@@ -14,7 +14,9 @@ final class HomeController extends AbstractController
     public function index(EventRepository $eventRepository, Request $request): Response
     {   
         $category = $request->query->get('category');
-        $evenements = $eventRepository->findAll();
+
+        $evenements = $eventRepository->findUpcomingAndValidated($category);
+
         return $this->render('home/index.html.twig', [
             'evenements' => $evenements,
             'category' => $category,

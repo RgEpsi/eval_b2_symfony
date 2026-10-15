@@ -17,11 +17,11 @@ class EventRepository extends ServiceEntityRepository
     public function findUpcomingAndValidated(?string $category = null): array
     {
         $qb = $this->createQueryBuilder('ev')
-            ->andWhere('ev.datetime >= :maintenant')
+            ->andWhere('ev.date >= :maintenant')
             ->setParameter('maintenant', new \DateTime())
             ->andWhere('ev.status = :valide')
             ->setParameter('valide', true)
-            ->orderBy('ev.datetime', 'ASC');
+            ->orderBy('ev.date', 'ASC');
 
         if ($category) {
             $qb->andWhere('ev.category = :cat')
