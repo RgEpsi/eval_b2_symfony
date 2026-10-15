@@ -1,54 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} 
 
-{% block title %}Ajouter un événement{% endblock %}
+{% block title %}Ajouter un événement{% endblock %} 
 
 {% block body %}
     <div class="narrow">
         <a class="back-link" href="{{ path('app_home') }}">← Retour aux événements</a>
-
         <div class="card">
             <h1>Ajouter un événement</h1>
-            <p class="muted">Votre événement sera visible après validation par un administrateur.</p>
 
-            <form class="form" method="post" enctype="multipart/form-data">
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                
                 <div>
-                    <label for="event_title" class="required">Titre</label>
-                    <input type="text" id="event_title" name="event[title]" placeholder="Ex. : Soirée jazz au Kiosque" required>
+                    <label for="event_titre" class="required">Titre</label>
+                    <input type="text" id="event_titre" name="event[titre]" placeholder="Ex. : Soirée jazz au Kiosque" required>
                 </div>
-
                 <div>
                     <label for="event_date" class="required">Date</label>
                     <input type="datetime-local" id="event_date" name="event[date]" required>
                 </div>
-
                 <div>
-                    <label for="event_information" class="required">Informations</label>
-                    <textarea id="event_information" name="event[information]" placeholder="Lieu, programme, tarif..." required></textarea>
+                    <label for="event_informations" class="required">Informations</label>
+                    <textarea id="event_informations" name="event[informations]" placeholder="Lieu, programme, tarif..." required></textarea>
                 </div>
-
                 <div>
                     <label for="event_category">Catégorie</label>
                     <select id="event_category" name="event[category]">
-                        <option value="Concert">Concert</option>
-                        <option value="Conférence">Conférence</option>
-                        <option value="Atelier">Atelier</option>
-                        <option value="Sport">Sport</option>
+                        <option value="concert">Concert</option>
+                        <option value="conference">Conférence</option>
+                        <option value="atelier">Atelier</option>
+                        <option value="sport">Sport</option>
                     </select>
                 </div>
-
                 <div>
-                    <label for="event_places">Nombre de places</label>
-                    <input type="number" id="event_places" name="event[places]" min="1" value="20">
+                    <label for="event_NbPlaces">Nombre de places</label>
+                    <input type="number" id="event_NbPlaces" name="event[NbPlaces]" min="1" value="20">
                 </div>
-
                 <div>
                     <label for="event_image">Image à la une</label>
                     <input type="file" id="event_image" name="event[image]" accept="image/*">
                     <div class="help-text">JPG, PNG ou WebP.</div>
                 </div>
 
+                {{ form_row(form._token) }}
+
                 <button type="submit">Enregistrer l'événement</button>
-            </form>
+                
+            {{ form_end(form, {'render_rest': false}) }}
+            
         </div>
     </div>
 {% endblock %}
