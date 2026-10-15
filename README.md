@@ -36,16 +36,16 @@ Le design est **déjà fait** : toutes les pages existent en HTML/CSS statique. 
 Le rendu se fait sur **votre fork**. Avant la date limite, complétez ce bloc (remplacez les `...`) et commitez-le :
 
 ```text
-Nom       : ...
-Prénom    : ...
+Nom       : Gay
+Prénom    : Raphaël
 
 Compte admin (ROLE_ADMIN)
-  Email        : ...
-  Mot de passe : ...
+  Email        : raphael@symfony.com
+  Mot de passe : 1234567
 
 Compte utilisateur
-  Email        : ...
-  Mot de passe : ...
+  Email        : pierre@symfony.com
+  Mot de passe : 123456
 ```
 
 Commitez aussi la **base SQLite** avec quelques événements, utilisateurs et inscriptions de test. Le dossier `var/` étant ignoré par Git, il faut forcer l'ajout :
