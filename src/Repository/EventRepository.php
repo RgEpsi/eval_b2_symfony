@@ -14,22 +14,24 @@ class EventRepository extends ServiceEntityRepository
     }
 
 
-    public function findUpcomingAndValidated(): array
+    public function findUpcomingAndValidated(?string $category = null): array
     {
-        return $this->createQueryBuilder('ev') 
-            
+        $qb = $this->createQueryBuilder('ev')
             ->andWhere('ev.datetime >= :maintenant')
             ->setParameter('maintenant', new \DateTime())
-            
             ->andWhere('ev.status = :valide')
             ->setParameter('valide', true)
-            
-            ->orderBy('ev.datetime', 'ASC')
+            ->orderBy('ev.datetime', 'ASC');
 
-            ->getQuery()
-            ->getResult()
-        ;
+        if ($category) {
+            $qb->andWhere('ev.category = :cat')
+               ->setParameter('cat', $category);
+        }
+
+        return $qb->getQuery()->getResult();
     }
+
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */
